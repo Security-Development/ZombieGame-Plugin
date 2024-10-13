@@ -15,12 +15,14 @@ use pocketmine\event\entity\ProjectileLaunchEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
+use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerToggleSneakEvent;
+use pocketmine\inventory\transaction\action\DropItemAction;
 use pocketmine\item\Bow;
 use pocketmine\item\Item;
 use pocketmine\item\ItemIdentifier;
@@ -39,9 +41,9 @@ class GameCoreEvent implements Listener {
         $victim = $event->getVictim();
         $victim->getInventory()->clearAll();
         SkinManager::setZombieSkin($victim);
+        $victim->setMaxHealth(60);
+        $victim->setHealth(60);
         if ($damager != null) {
-            $victim->setMaxHealth(60);
-            $victim->setHealth(60);
             $victim->getWorld()->addSound($victim->getPosition(), new GhastSound());
 
             for($i = 0; $i < 16; $i++) {
@@ -56,6 +58,8 @@ class GameCoreEvent implements Listener {
         $players = $event->getPlayers();
 
         foreach($players as $player) {
+            $player->setMaxHealth(20);
+            $player->setHealth(20);
             $player->setGamemode(GameMode::SURVIVAL());
             $player->teleport(EntryPoint::getRandomSpawnVector3());
             $player->getInventory()->clearAll();
@@ -71,6 +75,8 @@ class GameCoreEvent implements Listener {
         $players = $event->getPlayers();
 
         foreach($players as $player) {
+            $player->getInstance()->setMaxHealth(20);
+            $player->getInstance()->setHealth(20);
             $player->getInstance()->teleport($player->getInstance()->getWorld()->getSafeSpawn());
             $player->getInstance()->setGamemode(GameMode::SURVIVAL());
             SkinManager::setHumanSkin(player: $player->getInstance());
@@ -145,6 +151,7 @@ class GameCoreEvent implements Listener {
 
                     if ($time < 1) {
                         $entity->setGamemode( GameMode::SURVIVAL());
+                        $entity->setHealth(60);
                         $entity->teleport(EntryPoint::getRandomSpawnVector3() );
                         ScheduleManager::cancelTick($entity->getUniqueId());
                     } else {
@@ -198,6 +205,8 @@ class GameCoreEvent implements Listener {
     public function onJoin(PlayerJoinEvent $event): void {
         $player = $event->getPlayer();
         $player->teleport($player->getWorld()->getSafeSpawn());
+        $player->setMaxHealth(20);
+        $player->setHealth(20);
         $player->setGamemode(GameMode::SURVIVAL());
         $player->setNameTagVisible(false);
         $player->setNameTagAlwaysVisible(false);
@@ -226,15 +235,13 @@ class GameCoreEvent implements Listener {
         $event->cancel();   
     }
 
-    public function onTransaction(InventoryTransactionEvent $event): void {
-        foreach ($event->getTransaction()->getActions() as $action) {
-            if ($action->getSourceItem()->getTypeId() === ItemTypeIds::FEATHER||
-            $action->getSourceItem()->getTypeId() === ItemTypeIds::BOW ||
-            $action->getSourceItem()->getTypeId() === ItemTypeIds::ARROW
-            ) {
-                $event->cancel(); 
-                break;
-            }
+    public function onDrop(PlayerDropItemEvent $event): void {
+        $item = $event->getItem();
+        if ($item->getTypeId() === ItemTypeIds::FEATHER||
+        $item->getTypeId() === ItemTypeIds::BOW ||
+        $item->getTypeId() === ItemTypeIds::ARROW
+        ) {
+            $event->cancel(); 
         }
     }
 }

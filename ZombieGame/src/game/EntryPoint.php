@@ -3,11 +3,16 @@
 namespace game;
 use game\event\GameCoreEvent;
 use game\game\Game;
+use game\gun\Bullet;
 use game\lobby\Lobby;
+use pocketmine\entity\EntityDataHelper;
+use pocketmine\entity\EntityFactory;
 use pocketmine\math\Vector3;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\SingletonTrait;
+use pocketmine\world\World;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 class EntryPoint extends PluginBase {
@@ -19,9 +24,13 @@ class EntryPoint extends PluginBase {
     private static Config $cache;
 
     public function onEnable(): void {
+        $this->saveDefaultConfig();
         $pluginManger = $this->getServer()->getPluginManager();
         $pluginManger->registerEvents(new GameCoreEvent, $this);
         self::$uuid = Uuid::uuid4()->toString();
+        EntityFactory::getInstance()->register(Bullet::class,  function(World $world, CompoundTag $nbt): Bullet {
+            return new Bullet(EntityDataHelper::parseLocation($nbt, $world), null, $nbt);
+        }, ['Bullet', 'minecraft:bullet']);
 
         self::setInstance($this);
     }

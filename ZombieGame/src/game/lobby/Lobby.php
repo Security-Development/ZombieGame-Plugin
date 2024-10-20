@@ -7,7 +7,7 @@ use game\schedulers\ScheduleManager;
 use pocketmine\player\Player;
 
 class Lobby {
-    const COUNT_DOWN_TIME = 3;
+    const COUNT_DOWN_TIME = 10;
     const MINIMUM_PLAYERS = 2;
     private Player $lobbyHost;
     private array $lobbyPlayers;
@@ -69,7 +69,6 @@ class Lobby {
         if ($key !== false) {
             array_splice($this->lobbyPlayers, $key, 1);
             $this->notifyLobbyPlayers(sprintf("%s님께서 로비에서 나가셨습니다.", $player->getName()));
-            var_dump($this->lobbyPlayers);
         }
     }
 

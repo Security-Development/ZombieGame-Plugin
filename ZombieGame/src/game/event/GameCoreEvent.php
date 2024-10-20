@@ -180,7 +180,7 @@ class GameCoreEvent implements Listener {
             if ($victim instanceof Player && $damager instanceof Player) {
 
                 if (EntryPoint::getGame()?->isZombie($victim)) {
-                    $event->setKnockBack(0.15);
+                    $event->setKnockBack(0.115);
                 }
             }
             if ($child instanceof Bullet && $damager instanceof Player) {

@@ -37,7 +37,7 @@ class M16 extends GunBase {
                     $direction = $player->getDirectionVector();
                     $snowball = new Bullet($location, $player);
                     $snowball->setGravity(0.0001);
-                    $snowball->setMotion($direction->multiply(3.14 * 5));
+                    $snowball->setMotion($direction->multiply(3.14 * 6));
                     $snowball->spawnToAll();
                     $player->getWorld()->addSound($player->getPosition(), new GhastShootSound());
                     $player->sendTitle(" ", sprintf("                                 탄약수: %d", $this->bulletCount));

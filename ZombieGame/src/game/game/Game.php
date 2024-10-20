@@ -12,7 +12,7 @@ use pocketmine\player\Player;
 
 class Game {
     const RUNNING_TIME = 60 * 10;
-    const COUNT_DOWN_TIME = 3;
+    const COUNT_DOWN_TIME = 20;
     private array $gamePlayers;
     private int $gameTime;
     private ?GamePlayer $hostZomibe;

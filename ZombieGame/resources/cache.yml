@@ -1,0 +1,17 @@
+---
+RespawnPoints:
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:-0.0826;s:1:"y";d:30;s:1:"z";d:0.8637;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:101.3519;s:1:"y";d:37;s:1:"z";d:25.359100000000005;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:30.3281;s:1:"y";d:32;s:1:"z";d:-9.1946;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:78.65;s:1:"y";d:37;s:1:"z";d:-21.9217;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:78.649;s:1:"y";d:37;s:1:"z";d:-21.9231;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:77.7108;s:1:"y";d:37;s:1:"z";d:-9.756;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:77.71;s:1:"y";d:37;s:1:"z";d:-9.7584;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:101.9091;s:1:"y";d:37;s:1:"z";d:25.575700000000005;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:101.9233;s:1:"y";d:37;s:1:"z";d:25.6014;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:72.032;s:1:"y";d:34.5;s:1:"z";d:41.3202;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:71.8229;s:1:"y";d:34.5;s:1:"z";d:41.2923;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:29.9568;s:1:"y";d:32;s:1:"z";d:23.754199999999997;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:29.9546;s:1:"y";d:32;s:1:"z";d:23.7517;}
+- O:23:"pocketmine\math\Vector3":3:{s:1:"x";d:55.7687;s:1:"y";d:37;s:1:"z";d:1.0253;}
+...
